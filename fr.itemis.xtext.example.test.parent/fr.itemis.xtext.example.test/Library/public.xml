@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<common>
+	<Keyword name="OpenBrowser">
+		<Parameter name="type">
+			<ValuePool>iexplore,firefox,chrome</ValuePool>
+			<Optional></Optional>
+			<DefaultValue>iexplore</DefaultValue>
+		</Parameter>
+		<Parameter name="url">
+			<ValuePool></ValuePool>
+			<Optional>true</Optional>
+			<DefaultValue></DefaultValue>
+		</Parameter>
+	</Keyword>
+	<Keyword name="CloseBrowser">
+		<Parameter name="type">
+			<ValuePool>iexplore,firefox,chrome</ValuePool>
+			<Optional></Optional>
+			<DefaultValue>iexplore</DefaultValue>
+		</Parameter>
+	</Keyword>
+</common>

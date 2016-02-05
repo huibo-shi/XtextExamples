@@ -11,7 +11,7 @@ import fr.itemis.xtext.example.test.TestStandaloneSetupGenerated;
 @SuppressWarnings("all")
 public class TestStandaloneSetup extends TestStandaloneSetupGenerated {
   public static void doSetup() {
-    throw new Error("Unresolved compilation problems:"
-      + "\nThe method createInjectorAndDoEMFRegistration() is undefined for the type TestStandaloneSetup");
+    TestStandaloneSetup _testStandaloneSetup = new TestStandaloneSetup();
+    _testStandaloneSetup.createInjectorAndDoEMFRegistration();
   }
 }

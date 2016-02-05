@@ -1,0 +1,3 @@
+include 'fr.itemis.xtext.example.kwdl'
+include 'fr.itemis.xtext.example.kwdl.ide'
+include 'fr.itemis.xtext.example.kwdl.tests'

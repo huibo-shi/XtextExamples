@@ -1,0 +1,8 @@
+module fr.itemis.xtext.example.test.GenerateLibrary
+
+import fr.itemis.xtext.example.kwdl.generator.*
+Workflow {
+	component = LibraryGenerator {
+		outputFolder = "platform:/resource/fr.itemis.xtextexample.test/Library"
+	}
+}

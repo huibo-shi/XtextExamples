@@ -1,0 +1,29 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: fr.itemis.xtext.example.kwdl
+Bundle-Vendor: My Company
+Bundle-Version: 1.0.0.qualifier
+Bundle-SymbolicName: fr.itemis.xtext.example.kwdl; singleton:=true
+Bundle-ActivationPolicy: lazy
+Require-Bundle: org.eclipse.xtext,
+ org.eclipse.xtext.xbase,
+ org.eclipse.equinox.common;bundle-version="3.5.0",
+ org.eclipse.emf.ecore,
+ org.eclipse.xtext.xbase.lib,
+ org.antlr.runtime,
+ org.eclipse.xtext.util,
+ org.eclipse.xtend.lib,
+ org.eclipse.emf.common
+Bundle-RequiredExecutionEnvironment: JavaSE-1.8
+Export-Package: fr.itemis.xtext.example.kwdl.serializer,
+ fr.itemis.xtext.example.kwdl.kwdl,
+ fr.itemis.xtext.example.kwdl.scoping,
+ fr.itemis.xtext.example.kwdl.generator,
+ fr.itemis.xtext.example.kwdl.kwdl.util,
+ fr.itemis.xtext.example.kwdl.parser.antlr.internal,
+ fr.itemis.xtext.example.kwdl.parser.antlr,
+ fr.itemis.xtext.example.kwdl,
+ fr.itemis.xtext.example.kwdl.kwdl.impl,
+ fr.itemis.xtext.example.kwdl.validation,
+ fr.itemis.xtext.example.kwdl.services
+Import-Package: org.apache.log4j

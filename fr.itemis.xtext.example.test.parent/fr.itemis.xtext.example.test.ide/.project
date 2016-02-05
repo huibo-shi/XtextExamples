@@ -1,43 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <projectDescription>
 	<name>fr.itemis.xtext.example.test.ide</name>
-	<comment></comment>
-	<projects>
-	</projects>
+	<comment/>
+	<projects/>
+	<natures>
+		<nature>org.eclipse.jdt.core.javanature</nature>
+		<nature>org.eclipse.xtext.ui.shared.xtextNature</nature>
+	</natures>
 	<buildSpec>
 		<buildCommand>
-			<name>org.eclipse.xtext.ui.shared.xtextBuilder</name>
-			<arguments>
-			</arguments>
+			<name>org.eclipse.jdt.core.javabuilder</name>
+			<arguments/>
 		</buildCommand>
 		<buildCommand>
-			<name>org.eclipse.jdt.core.javabuilder</name>
-			<arguments>
-			</arguments>
+			<name>org.eclipse.xtext.ui.shared.xtextBuilder</name>
+			<arguments/>
 		</buildCommand>
 	</buildSpec>
-	<natures>
-		<nature>org.eclipse.xtext.ui.shared.xtextNature</nature>
-		<nature>org.eclipse.jdt.core.javanature</nature>
-	</natures>
-	<filteredResources>
-		<filter>
-			<id>1454665349779</id>
-			<name></name>
-			<type>26</type>
-			<matcher>
-				<id>org.eclipse.ui.ide.multiFilter</id>
-				<arguments>1.0-projectRelativePath-matches-false-false-build</arguments>
-			</matcher>
-		</filter>
-		<filter>
-			<id>1454665349784</id>
-			<name></name>
-			<type>26</type>
-			<matcher>
-				<id>org.eclipse.ui.ide.multiFilter</id>
-				<arguments>1.0-projectRelativePath-matches-false-false-.gradle</arguments>
-			</matcher>
-		</filter>
-	</filteredResources>
+	<linkedResources/>
 </projectDescription>

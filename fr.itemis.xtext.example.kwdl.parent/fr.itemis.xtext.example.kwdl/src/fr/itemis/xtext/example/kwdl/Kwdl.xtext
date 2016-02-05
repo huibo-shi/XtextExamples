@@ -1,0 +1,24 @@
+grammar fr.itemis.xtext.example.kwdl.Kwdl with org.eclipse.xtext.common.Terminals
+
+generate kwdl "http://www.itemis.fr/xtext/example/kwdl/Kwdl"
+
+Model:
+	actionRulls+=ActionRulls*;
+
+ActionRulls:
+	'rule' name = ID ('(' lable = ID ')')? ':'
+	(STRING | ID)*
+;
+
+Keyword:
+	'Keyword' name=ID '{'
+		parameters += Parameter *
+	'}'
+;
+
+Parameter:
+	optional ?= 'optional' 'parameter' name=ID ('{'
+		('ValuePool' ':' '[' valuePool += STRING (',' valuePool += STRING)* ']')?
+		('DefaultValue' ':' defaultValue = STRING )?
+	'}')?
+;

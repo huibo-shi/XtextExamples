@@ -1,0 +1,14 @@
+#Fri Feb 05 13:16:14 CET 2016
+generateSuppressWarnings=true
+BuilderConfiguration.is_project_specific=true
+targetJavaVersion=Java6
+useJavaCompilerCompliance=false
+outlet.DEFAULT_OUTPUT.installDslAsPrimarySource=false
+outlet.DEFAULT_OUTPUT.userOutputPerSourceFolder=true
+outlet.DEFAULT_OUTPUT.sourceFolder.src-gen.directory=xtend-gen
+outlet.DEFAULT_OUTPUT.hideLocalSyntheticVariables=true
+eclipse.preferences.version=1
+includeDateInGenerated=false
+generateGeneratedAnnotation=false
+outlet.DEFAULT_OUTPUT.sourceFolder.src.directory=xtend-gen
+ValidatorConfiguration.is_project_specific=true
