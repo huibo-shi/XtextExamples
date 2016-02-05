@@ -1,0 +1,4 @@
+include 'fr.itemis.xtext.example.test'
+include 'fr.itemis.xtext.example.test.ide'
+include 'fr.itemis.xtext.example.test.web'
+include 'fr.itemis.xtext.example.test.tests'

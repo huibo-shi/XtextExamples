@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<meta http-equiv="Content-Language" content="en-us">
+	<title>Example Web Editor</title>
+	<link rel="stylesheet" type="text/css" href="xtext/2.9.1/xtext-ace.css"/>
+	<link rel="stylesheet" type="text/css" href="style.css"/>
+	<script src="webjars/requirejs/2.1.20/require.min.js"></script>
+	<script src="lib/jquery-1.4.4.min.js"></script>
+	<script src="lib/jquery.reveal.js"></script>
+	<link rel="stylesheet" href="lib/reveal.css">
+	<style>
+		fieldset label {
+			display: inline-block;
+			width: 100px;	
+		}
+	</style>
+	
+	<script type="text/javascript">
+		var editor;
+		var entries;
+		var visitTime = 0;
+		var baseUrl = window.location.pathname;
+		var fileIndex = baseUrl.indexOf("index.html");
+		if (fileIndex > 0)
+			baseUrl = baseUrl.slice(0, fileIndex);
+		require.config({
+			baseUrl: baseUrl,
+			paths: {
+				"jquery": "webjars/jquery/2.1.4/jquery.min",
+				"ace/ext/language_tools": "webjars/ace/1.2.0/src/ext-language_tools",
+				"xtext/xtext-ace": "xtext/2.9.1/xtext-ace"
+			}
+		});
+		require(["webjars/ace/1.2.0/src/ace"], function() {
+			require(["xtext/xtext-ace"], function(xtext) {
+				editor = xtext.createEditor({
+					baseUrl: baseUrl,
+					syntaxDefinition: "xtext-resources/generated/mode-test"
+				});
+				
+				editor.xtextServices.successListeners.push(function(serviceType, result) {
+						//todo initial call
+						if (serviceType == 'assist' && visitTime ==0) {
+							entries = result.entries;
+							editor.xtextServices.successListeners.pop();
+						}
+					});
+					
+				editor.commands.addCommand({
+				    name: 'openParamsDialog',
+				    bindKey: {win: 'Ctrl-o',  mac: 'Command-o'},
+				    exec: function(editor) {
+				    	//var fields = '?fields=[firstname]|[lastname]';
+				        //window.open(window.location+'parameter.html'+fields,'InputParameterDialog');
+				        var fields = ['firstName','lastName','age'];
+						dynamicGenerateInputs(fields);
+				    }
+				});
+				editor.commands.addCommand({
+				    name: 'searchDialog',
+				    bindKey: {win: 'Ctrl-p',  mac: 'Command-p'},
+				    exec: function(editor) {
+				    	searchBox.show();
+				    	searchBox.reveal({
+							closeonbackgroundclick: true,
+							dismissmodalclass: 'closeSearchDialog'
+						});
+						var searchInput = document.getElementById("searchInput");
+						searchInput.focus();
+				    }
+				});
+				
+			});
+		});
+	</script>
+</head>
+<body>
+
+<div class="container">
+	<div class="header">
+		<h1>Example Test Web Editor</h1>
+	</div>
+	<div class="content">
+		<div id="xtext-editor" data-editor-xtext-lang="test"></div>
+	</div>
+	
+	<div id="inputsContainer" class="reveal-modal">
+		<form>
+			<fieldset id="inputFieldset">
+				<legend>Please input the fields below: </legend>
+			</fieldset>
+		</form>
+		<!--a class="close-reveal-modal">&#215;</a-->
+	</div>
+	<div id="searchBox" class="reveal-modal">
+		<form>
+			<fieldset id = "searchFieldset">
+				<p>Select an item to insert (?=any character, *=any string):</p>
+				<input id = "searchInput" name= "searchInput" type = "search" onkeyup="searchInputChange(event)" autocomplete="off"/>
+				<p>Matching items:</p>
+				<textarea id = "searchResult" name= "searchResult" rows="10" cols="2" wrap="off" readOnly="true" onkeyup="searchResultSelect(event)"></textarea>
+				<p/>
+				<input class = 'closeSearchDialog' type='button' value='Insert' onclick='callInsertWindow()'/>
+				<input class = 'closeSearchDialog' type='button' value='Cancel' onclick='searchBox.hide()'/>
+			</fieldset>
+		</form>
+	</div>
+	
+</div>
+	<script>
+		var current_line = 1;
+		var searchResultEntries = [];
+		function callInsertWindow(){
+			var total_line = searchResult.value.split("\n").length-1;
+			if (total_line>0&&current_line>0&&current_line<=total_line){
+				var editPositions = searchResultEntries[current_line-1].editPositions;
+				var fields = [];
+				for (i=0;i<editPositions.length;i++){
+					fields[i] = searchResultEntries[current_line-1].proposal.substring(editPositions[i].offset,editPositions[i].offset+editPositions[i].length);
+				}
+				searchBox.hide();
+				dynamicGenerateInputs(fields);
+			}
+		}
+		function searchResultSelect(e){
+			var searchResult = document.getElementById("searchResult");
+			var total_line = searchResult.value.split("\n").length-1;
+			if (e.keyCode == '13') { //enter
+				callInsertWindow();
+			}
+			else if (e.keyCode == '38') { // Up
+        		if (total_line > 1 && current_line > 1) { 
+        			current_line -= 1; 
+        			selectTextareaLine(searchResult,current_line);
+        		}
+    		} else if (e.keyCode == '40') { // Down
+        		if (total_line > 0 && current_line < total_line) { 
+        			current_line += 1; 
+        			selectTextareaLine(searchResult,current_line);
+        		}
+		    }
+		}
+		function searchInputChange(e){
+			var searchResult = document.getElementById("searchResult");
+			var total_line = searchResult.value.split("\n").length-1;
+			if (e.keyCode == '13') { //enter
+				callInsertWindow();
+			}
+			else if (e.keyCode == '40') { // Down
+        		if (total_line > 0) { 
+        			current_line = 1; 
+        			selectTextareaLine(searchResult,current_line);
+        		}
+		    } else {
+		     	var value = document.getElementById("searchInput").value.toLowerCase().replace(/\?/g,".").replace(/\*/g,".*");	
+				var rexp= new RegExp("^"+value);
+				var matchingValues="";
+				var j = 0;
+				for (i=0; i<entries.length; i++){
+					if (entries[i].hasOwnProperty('label')){
+						if (rexp.test(entries[i].label.toLowerCase())){ //||rexp.test(entries[i].proposal.toLowerCase())
+							matchingValues += entries[i].label+" - "+entries[i].proposal.replace(/\n|\r/g," ") + "\n";
+							searchResultEntries[j]=entries[i];
+							j++;
+						}
+					}
+					
+				}
+				searchResult.value =matchingValues;   
+		    }
+		}
+		
+		function selectTextareaLine(tarea,lineNum) {
+		    lineNum--; // array starts at 0
+		    var lines = tarea.value.split("\n");
+		
+		    // calculate start/end
+		    var startPos = 0, endPos = tarea.value.length;
+		    for(var x = 0; x < lines.length; x++) {
+		        if(x == lineNum) {
+		            break;
+		        }
+		        startPos += (lines[x].length+1);
+		    }
+		
+		    var endPos = lines[lineNum].length+startPos;
+		
+		    // do selection
+		    // Chrome / Firefox
+		
+		    if(typeof(tarea.selectionStart) != "undefined") {
+		        tarea.focus();
+		        tarea.selectionStart = startPos;
+		        tarea.selectionEnd = endPos;
+		        return true;
+		    }
+		
+		    // IE
+		    if (document.selection && document.selection.createRange) {
+		        tarea.focus();
+		        tarea.select();
+		        var range = document.selection.createRange();
+		        range.collapse(true);
+		        range.moveEnd("character", endPos);
+		        range.moveStart("character", startPos);
+		        range.select();
+		        return true;
+		    }
+		
+		    return false;
+		}
+
+		function dynamicGenerateInputs(fields) {
+			fieldset = $('#inputFieldset');
+			fieldset[0].innerHTML = initForm;
+			fieldset.append($("<br/><br/>"));
+			for(var i=0; i<fields.length; i++) {
+				fieldset.append($("<label for='" + fields[i] + "'>" + fields[i] + ":</label>"));
+				fieldset.append($("<input id='" + fields[i] + "' name='" + fields[i] + "' type='text'/>"));
+				fieldset.append($("<br/><br/>"));
+			}
+			fieldset.append($("<input class='closeInputContainer' type='button' value='Insert' onclick='InsertTemplate()'/>"));
+			//inputContainer.show();
+			inputContainer.reveal({
+			//$("#inputsContainer").reveal({
+				closeonbackgroundclick: true,
+				dismissmodalclass: 'closeInputContainer'
+			});
+			$('fieldset input[type=text]')[0].focus();
+		}
+		function InsertTemplate() {
+			var proposal = "";
+			var start=end=j=0;
+			$('fieldset input[type=text]').each(function(i, input) {
+				end = searchResultEntries[current_line-1].editPositions[j].offset;
+				proposal += searchResultEntries[current_line-1].proposal.substring(start,end)+ input.value;
+				start = end + searchResultEntries[current_line-1].editPositions[j].length;
+				j++;
+				//printStr += (input.id + ": " + input.value);
+				//printStr += "\r\n";
+			});
+			proposal += searchResultEntries[current_line-1].proposal.substring(start,searchResultEntries[current_line-1].proposal.length);
+			//alert(printStr);
+			//inputContainer.hide();
+			
+			editor.focus();
+			editor.insert(proposal);
+		}
+		inputContainer = $("#inputsContainer");
+		initForm = $('#inputFieldset')[0].innerHTML;
+		//fields = ['firstName','lastName','age'];
+		//dynamicGenerateInputs(fields);
+		searchBox = $("#searchBox");
+		
+		//var searchInput = document.getElementbyId("searchInput");
+	</script>
+</body>
+</html>
