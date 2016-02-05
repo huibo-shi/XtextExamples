@@ -3,24 +3,36 @@
  */
 package fr.itemis.xtext.example.test.web;
 
+import com.google.inject.Guice;
+import com.google.inject.Injector;
+import com.google.inject.Module;
+import com.google.inject.Provider;
+import com.google.inject.util.Modules;
+import fr.itemis.xtext.example.test.TestRuntimeModule;
+import fr.itemis.xtext.example.test.TestStandaloneSetup;
+import fr.itemis.xtext.example.test.web.TestWebModule;
 import java.util.concurrent.ExecutorService;
+import org.eclipse.xtend.lib.annotations.FinalFieldsConstructor;
 
 /**
  * Initialization support for running Xtext languages in web applications.
  */
-/* @FinalFieldsConstructor */@SuppressWarnings("all")
-public class TestWebSetup /* implements TestStandaloneSetup  */{
-  private final /* Provider<ExecutorService> */Object executorServiceProvider;
+@FinalFieldsConstructor
+@SuppressWarnings("all")
+public class TestWebSetup extends TestStandaloneSetup {
+  private final Provider<ExecutorService> executorServiceProvider;
   
   @Override
-  public /* Injector */Object createInjector() {
-    throw new Error("Unresolved compilation problems:"
-      + "\nTestRuntimeModule cannot be resolved."
-      + "\nThe method or field Guice is undefined"
-      + "\nThe method or field Modules is undefined"
-      + "\nInvalid number of arguments. The constructor TestWebModule() is not applicable for the arguments (Provider)"
-      + "\ncreateInjector cannot be resolved"
-      + "\noverride cannot be resolved"
-      + "\nwith cannot be resolved");
+  public Injector createInjector() {
+    final TestRuntimeModule runtimeModule = new TestRuntimeModule();
+    final TestWebModule webModule = new TestWebModule(this.executorServiceProvider);
+    Modules.OverriddenModuleBuilder _override = Modules.override(runtimeModule);
+    Module _with = _override.with(webModule);
+    return Guice.createInjector(_with);
+  }
+  
+  public TestWebSetup(final Provider<ExecutorService> executorServiceProvider) {
+    super();
+    this.executorServiceProvider = executorServiceProvider;
   }
 }

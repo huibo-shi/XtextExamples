@@ -1,5 +1,4 @@
-define(["ace/lib/oop", "ace/mode/text", "ace/mode/text_highlight_rules", "./Tgt"], function(oop, mText, mTextHighlightRules, mFoldmode) {
-	
+define(["ace/lib/oop", "ace/mode/text", "ace/mode/text_highlight_rules","./TestFoldMode"], function(oop, mText, mTextHighlightRules, mTestFold) {
 	var HighlightRules = function() {
 		var keywords = "end";
 		this.$rules = {
@@ -18,10 +17,11 @@ define(["ace/lib/oop", "ace/mode/text", "ace/mode/text_highlight_rules", "./Tgt"
 		};
 	};
 	oop.inherits(HighlightRules, mTextHighlightRules.TextHighlightRules);
-	var TestFoldMode = mFoldmode.FoldMode;
+	
+	var testFoldMode = mTestFold.FoldMode;
 	var Mode = function() {
 		this.HighlightRules = HighlightRules;
-		this.foldingRules = new TestFoldMode();
+		this.foldingRules = new testFoldMode();
 	};
 	oop.inherits(Mode, mText.Mode);
 	Mode.prototype.$id = "xtext/test";

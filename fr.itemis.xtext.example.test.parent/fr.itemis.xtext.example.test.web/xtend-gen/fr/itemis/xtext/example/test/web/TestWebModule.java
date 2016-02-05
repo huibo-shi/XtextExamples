@@ -3,15 +3,24 @@
  */
 package fr.itemis.xtext.example.test.web;
 
+import com.google.inject.Provider;
 import fr.itemis.xtext.example.test.web.AbstractTestWebModule;
 import fr.itemis.xtext.example.test.web.contentAssit.TestContentProposalProvider;
+import java.util.concurrent.ExecutorService;
+import org.eclipse.xtend.lib.annotations.FinalFieldsConstructor;
+import org.eclipse.xtext.ide.editor.contentassist.IdeContentProposalProvider;
 
 /**
  * Use this class to register additional components to be used within the web application.
  */
-/* @FinalFieldsConstructor */@SuppressWarnings("all")
+@FinalFieldsConstructor
+@SuppressWarnings("all")
 public class TestWebModule extends AbstractTestWebModule {
-  public /* Class<? extends IdeContentProposalProvider> */Object bindIdeContentProposalProvider() {
+  public Class<? extends IdeContentProposalProvider> bindIdeContentProposalProvider() {
     return TestContentProposalProvider.class;
+  }
+  
+  public TestWebModule(final Provider<ExecutorService> arg0) {
+    super(arg0);
   }
 }
