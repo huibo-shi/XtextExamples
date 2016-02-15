@@ -133,10 +133,10 @@ public class InternalKwdlLexer extends Lexer {
         try {
             int _type = T__15;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // InternalKwdl.g:15:7: ( 'Parameter' )
-            // InternalKwdl.g:15:9: 'Parameter'
+            // InternalKwdl.g:15:7: ( 'parameter' )
+            // InternalKwdl.g:15:9: 'parameter'
             {
-            match("Parameter"); 
+            match("parameter"); 
 
 
             }
@@ -975,7 +975,7 @@ public class InternalKwdlLexer extends Lexer {
     static final String DFA12_specialS =
         "\1\0\20\uffff\1\1\1\2\73\uffff}>";
     static final String[] DFA12_transitionS = {
-            "\11\25\2\24\2\25\1\24\22\25\1\24\1\25\1\21\4\25\1\22\1\3\1\4\2\25\1\13\2\25\1\23\12\20\1\2\6\25\3\17\1\14\13\17\1\5\5\17\1\10\4\17\1\11\1\25\1\12\1\16\1\17\1\25\16\17\1\15\2\17\1\1\10\17\1\6\1\25\1\7\uff82\25",
+            "\11\25\2\24\2\25\1\24\22\25\1\24\1\25\1\21\4\25\1\22\1\3\1\4\2\25\1\13\2\25\1\23\12\20\1\2\6\25\3\17\1\14\21\17\1\10\4\17\1\11\1\25\1\12\1\16\1\17\1\25\16\17\1\15\1\5\1\17\1\1\10\17\1\6\1\25\1\7\uff82\25",
             "\1\26",
             "",
             "",
@@ -1103,7 +1103,7 @@ public class InternalKwdlLexer extends Lexer {
 
                         else if ( (LA12_0==')') ) {s = 4;}
 
-                        else if ( (LA12_0=='P') ) {s = 5;}
+                        else if ( (LA12_0=='p') ) {s = 5;}
 
                         else if ( (LA12_0=='{') ) {s = 6;}
 
@@ -1123,7 +1123,7 @@ public class InternalKwdlLexer extends Lexer {
 
                         else if ( (LA12_0=='^') ) {s = 14;}
 
-                        else if ( ((LA12_0>='A' && LA12_0<='C')||(LA12_0>='E' && LA12_0<='O')||(LA12_0>='Q' && LA12_0<='U')||(LA12_0>='W' && LA12_0<='Z')||LA12_0=='_'||(LA12_0>='a' && LA12_0<='n')||(LA12_0>='p' && LA12_0<='q')||(LA12_0>='s' && LA12_0<='z')) ) {s = 15;}
+                        else if ( ((LA12_0>='A' && LA12_0<='C')||(LA12_0>='E' && LA12_0<='U')||(LA12_0>='W' && LA12_0<='Z')||LA12_0=='_'||(LA12_0>='a' && LA12_0<='n')||LA12_0=='q'||(LA12_0>='s' && LA12_0<='z')) ) {s = 15;}
 
                         else if ( ((LA12_0>='0' && LA12_0<='9')) ) {s = 16;}
 

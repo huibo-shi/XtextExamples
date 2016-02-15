@@ -19,7 +19,6 @@ public class TestContentProposalProvider extends IdeContentProposalProvider {
   @Extension
   private TestTemplateProposalProvider _testTemplateProposalProvider;
   
-  @Override
   protected void _createProposals(final RuleCall ruleCall, final ContentAssistContext context, final IIdeContentProposalAcceptor acceptor) {
     this._testTemplateProposalProvider.createTemplateProposals(context, acceptor);
     super._createProposals(ruleCall, context, acceptor);

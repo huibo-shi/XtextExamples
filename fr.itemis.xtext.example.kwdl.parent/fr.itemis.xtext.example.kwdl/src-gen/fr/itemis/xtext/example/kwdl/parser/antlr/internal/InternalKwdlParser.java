@@ -21,7 +21,7 @@ import java.util.ArrayList;
 @SuppressWarnings("all")
 public class InternalKwdlParser extends AbstractInternalAntlrParser {
     public static final String[] tokenNames = new String[] {
-        "<invalid>", "<EOR>", "<DOWN>", "<UP>", "RULE_ID", "RULE_STRING", "RULE_INT", "RULE_ML_COMMENT", "RULE_SL_COMMENT", "RULE_WS", "RULE_ANY_OTHER", "'rule'", "'('", "')'", "':'", "'optional'", "'Parameter'", "'{'", "'ValuePool'", "'['", "','", "']'", "'DefaultValue'", "'}'"
+        "<invalid>", "<EOR>", "<DOWN>", "<UP>", "RULE_ID", "RULE_STRING", "RULE_INT", "RULE_ML_COMMENT", "RULE_SL_COMMENT", "RULE_WS", "RULE_ANY_OTHER", "'rule'", "'('", "')'", "':'", "'optional'", "'parameter'", "'{'", "'ValuePool'", "'['", "','", "']'", "'DefaultValue'", "'}'"
     };
     public static final int RULE_STRING=5;
     public static final int RULE_SL_COMMENT=8;
@@ -448,7 +448,7 @@ public class InternalKwdlParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleParameter"
-    // InternalKwdl.g:191:1: ruleParameter returns [EObject current=null] : ( ( (lv_optional_0_0= 'optional' ) ) otherlv_1= 'Parameter' ( (lv_name_2_0= RULE_ID ) ) (otherlv_3= '{' (otherlv_4= 'ValuePool' otherlv_5= ':' otherlv_6= '[' ( (lv_valuePool_7_0= RULE_STRING ) ) (otherlv_8= ',' ( (lv_valuePool_9_0= RULE_STRING ) ) )* otherlv_10= ']' )? (otherlv_11= 'DefaultValue' otherlv_12= ':' ( (lv_defaultValue_13_0= RULE_STRING ) ) )? otherlv_14= '}' )? ) ;
+    // InternalKwdl.g:191:1: ruleParameter returns [EObject current=null] : ( ( (lv_optional_0_0= 'optional' ) ) otherlv_1= 'parameter' ( (lv_name_2_0= RULE_ID ) ) (otherlv_3= '{' (otherlv_4= 'ValuePool' otherlv_5= ':' otherlv_6= '[' ( (lv_valuePool_7_0= RULE_STRING ) ) (otherlv_8= ',' ( (lv_valuePool_9_0= RULE_STRING ) ) )* otherlv_10= ']' )? (otherlv_11= 'DefaultValue' otherlv_12= ':' ( (lv_defaultValue_13_0= RULE_STRING ) ) )? otherlv_14= '}' )? ) ;
     public final EObject ruleParameter() throws RecognitionException {
         EObject current = null;
 
@@ -472,11 +472,11 @@ public class InternalKwdlParser extends AbstractInternalAntlrParser {
         	enterRule();
 
         try {
-            // InternalKwdl.g:197:2: ( ( ( (lv_optional_0_0= 'optional' ) ) otherlv_1= 'Parameter' ( (lv_name_2_0= RULE_ID ) ) (otherlv_3= '{' (otherlv_4= 'ValuePool' otherlv_5= ':' otherlv_6= '[' ( (lv_valuePool_7_0= RULE_STRING ) ) (otherlv_8= ',' ( (lv_valuePool_9_0= RULE_STRING ) ) )* otherlv_10= ']' )? (otherlv_11= 'DefaultValue' otherlv_12= ':' ( (lv_defaultValue_13_0= RULE_STRING ) ) )? otherlv_14= '}' )? ) )
-            // InternalKwdl.g:198:2: ( ( (lv_optional_0_0= 'optional' ) ) otherlv_1= 'Parameter' ( (lv_name_2_0= RULE_ID ) ) (otherlv_3= '{' (otherlv_4= 'ValuePool' otherlv_5= ':' otherlv_6= '[' ( (lv_valuePool_7_0= RULE_STRING ) ) (otherlv_8= ',' ( (lv_valuePool_9_0= RULE_STRING ) ) )* otherlv_10= ']' )? (otherlv_11= 'DefaultValue' otherlv_12= ':' ( (lv_defaultValue_13_0= RULE_STRING ) ) )? otherlv_14= '}' )? )
+            // InternalKwdl.g:197:2: ( ( ( (lv_optional_0_0= 'optional' ) ) otherlv_1= 'parameter' ( (lv_name_2_0= RULE_ID ) ) (otherlv_3= '{' (otherlv_4= 'ValuePool' otherlv_5= ':' otherlv_6= '[' ( (lv_valuePool_7_0= RULE_STRING ) ) (otherlv_8= ',' ( (lv_valuePool_9_0= RULE_STRING ) ) )* otherlv_10= ']' )? (otherlv_11= 'DefaultValue' otherlv_12= ':' ( (lv_defaultValue_13_0= RULE_STRING ) ) )? otherlv_14= '}' )? ) )
+            // InternalKwdl.g:198:2: ( ( (lv_optional_0_0= 'optional' ) ) otherlv_1= 'parameter' ( (lv_name_2_0= RULE_ID ) ) (otherlv_3= '{' (otherlv_4= 'ValuePool' otherlv_5= ':' otherlv_6= '[' ( (lv_valuePool_7_0= RULE_STRING ) ) (otherlv_8= ',' ( (lv_valuePool_9_0= RULE_STRING ) ) )* otherlv_10= ']' )? (otherlv_11= 'DefaultValue' otherlv_12= ':' ( (lv_defaultValue_13_0= RULE_STRING ) ) )? otherlv_14= '}' )? )
             {
-            // InternalKwdl.g:198:2: ( ( (lv_optional_0_0= 'optional' ) ) otherlv_1= 'Parameter' ( (lv_name_2_0= RULE_ID ) ) (otherlv_3= '{' (otherlv_4= 'ValuePool' otherlv_5= ':' otherlv_6= '[' ( (lv_valuePool_7_0= RULE_STRING ) ) (otherlv_8= ',' ( (lv_valuePool_9_0= RULE_STRING ) ) )* otherlv_10= ']' )? (otherlv_11= 'DefaultValue' otherlv_12= ':' ( (lv_defaultValue_13_0= RULE_STRING ) ) )? otherlv_14= '}' )? )
-            // InternalKwdl.g:199:3: ( (lv_optional_0_0= 'optional' ) ) otherlv_1= 'Parameter' ( (lv_name_2_0= RULE_ID ) ) (otherlv_3= '{' (otherlv_4= 'ValuePool' otherlv_5= ':' otherlv_6= '[' ( (lv_valuePool_7_0= RULE_STRING ) ) (otherlv_8= ',' ( (lv_valuePool_9_0= RULE_STRING ) ) )* otherlv_10= ']' )? (otherlv_11= 'DefaultValue' otherlv_12= ':' ( (lv_defaultValue_13_0= RULE_STRING ) ) )? otherlv_14= '}' )?
+            // InternalKwdl.g:198:2: ( ( (lv_optional_0_0= 'optional' ) ) otherlv_1= 'parameter' ( (lv_name_2_0= RULE_ID ) ) (otherlv_3= '{' (otherlv_4= 'ValuePool' otherlv_5= ':' otherlv_6= '[' ( (lv_valuePool_7_0= RULE_STRING ) ) (otherlv_8= ',' ( (lv_valuePool_9_0= RULE_STRING ) ) )* otherlv_10= ']' )? (otherlv_11= 'DefaultValue' otherlv_12= ':' ( (lv_defaultValue_13_0= RULE_STRING ) ) )? otherlv_14= '}' )? )
+            // InternalKwdl.g:199:3: ( (lv_optional_0_0= 'optional' ) ) otherlv_1= 'parameter' ( (lv_name_2_0= RULE_ID ) ) (otherlv_3= '{' (otherlv_4= 'ValuePool' otherlv_5= ':' otherlv_6= '[' ( (lv_valuePool_7_0= RULE_STRING ) ) (otherlv_8= ',' ( (lv_valuePool_9_0= RULE_STRING ) ) )* otherlv_10= ']' )? (otherlv_11= 'DefaultValue' otherlv_12= ':' ( (lv_defaultValue_13_0= RULE_STRING ) ) )? otherlv_14= '}' )?
             {
             // InternalKwdl.g:199:3: ( (lv_optional_0_0= 'optional' ) )
             // InternalKwdl.g:200:4: (lv_optional_0_0= 'optional' )

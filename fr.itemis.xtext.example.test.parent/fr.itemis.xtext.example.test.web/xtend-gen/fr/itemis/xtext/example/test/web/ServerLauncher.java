@@ -28,7 +28,6 @@ public class ServerLauncher {
     final Server server = new Server(_inetSocketAddress);
     WebAppContext _webAppContext = new WebAppContext();
     final Procedure1<WebAppContext> _function = new Procedure1<WebAppContext>() {
-      @Override
       public void apply(final WebAppContext it) {
         it.setResourceBase("WebRoot");
         it.setWelcomeFiles(new String[] { "index.html" });
@@ -52,7 +51,6 @@ public class ServerLauncher {
       String _plus_1 = (_plus + "...");
       log.info(_plus_1);
       final Runnable _function_1 = new Runnable() {
-        @Override
         public void run() {
           try {
             log.info("Press enter to stop the server...");

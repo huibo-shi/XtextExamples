@@ -22,7 +22,6 @@ import org.eclipse.xtend.lib.annotations.FinalFieldsConstructor;
 public class TestWebSetup extends TestStandaloneSetup {
   private final Provider<ExecutorService> executorServiceProvider;
   
-  @Override
   public Injector createInjector() {
     final TestRuntimeModule runtimeModule = new TestRuntimeModule();
     final TestWebModule webModule = new TestWebModule(this.executorServiceProvider);

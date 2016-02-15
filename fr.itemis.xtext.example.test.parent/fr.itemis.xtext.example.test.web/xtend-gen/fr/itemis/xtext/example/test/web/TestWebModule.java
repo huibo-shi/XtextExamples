@@ -20,7 +20,7 @@ public class TestWebModule extends AbstractTestWebModule {
     return TestContentProposalProvider.class;
   }
   
-  public TestWebModule(final Provider<ExecutorService> arg0) {
-    super(arg0);
+  public TestWebModule(final Provider<ExecutorService> executorServiceProvider) {
+    super(executorServiceProvider);
   }
 }

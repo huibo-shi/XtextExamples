@@ -4,7 +4,6 @@
 package fr.itemis.xtext.example.test.tests;
 
 import com.google.inject.Inject;
-import fr.itemis.xtext.example.test.test.TgtScript;
 import fr.itemis.xtext.example.test.tests.TestInjectorProvider;
 import org.eclipse.xtend2.lib.StringConcatenation;
 import org.eclipse.xtext.junit4.InjectWith;
@@ -20,7 +19,7 @@ import org.junit.runner.RunWith;
 @SuppressWarnings("all")
 public class TestParsingTest {
   @Inject
-  private ParseHelper<TgtScript> parseHelper;
+  private /* ParseHelper<TgtScript> */Object parseHelper;
   
   @Test
   public void loadModel() {

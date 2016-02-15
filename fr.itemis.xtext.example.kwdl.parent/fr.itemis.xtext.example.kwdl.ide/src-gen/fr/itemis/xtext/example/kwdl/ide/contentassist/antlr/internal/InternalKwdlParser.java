@@ -22,7 +22,7 @@ import java.util.ArrayList;
 @SuppressWarnings("all")
 public class InternalKwdlParser extends AbstractInternalContentAssistParser {
     public static final String[] tokenNames = new String[] {
-        "<invalid>", "<EOR>", "<DOWN>", "<UP>", "RULE_STRING", "RULE_ID", "RULE_INT", "RULE_ML_COMMENT", "RULE_SL_COMMENT", "RULE_WS", "RULE_ANY_OTHER", "'rule'", "':'", "'('", "')'", "'Parameter'", "'{'", "'}'", "'ValuePool'", "'['", "']'", "','", "'DefaultValue'", "'optional'"
+        "<invalid>", "<EOR>", "<DOWN>", "<UP>", "RULE_STRING", "RULE_ID", "RULE_INT", "RULE_ML_COMMENT", "RULE_SL_COMMENT", "RULE_WS", "RULE_ANY_OTHER", "'rule'", "':'", "'('", "')'", "'parameter'", "'{'", "'}'", "'ValuePool'", "'['", "']'", "','", "'DefaultValue'", "'optional'"
     };
     public static final int RULE_STRING=4;
     public static final int RULE_SL_COMMENT=8;
@@ -1184,17 +1184,17 @@ public class InternalKwdlParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Parameter__Group__1__Impl"
-    // InternalKwdl.g:403:1: rule__Parameter__Group__1__Impl : ( 'Parameter' ) ;
+    // InternalKwdl.g:403:1: rule__Parameter__Group__1__Impl : ( 'parameter' ) ;
     public final void rule__Parameter__Group__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalKwdl.g:407:1: ( ( 'Parameter' ) )
-            // InternalKwdl.g:408:1: ( 'Parameter' )
+            // InternalKwdl.g:407:1: ( ( 'parameter' ) )
+            // InternalKwdl.g:408:1: ( 'parameter' )
             {
-            // InternalKwdl.g:408:1: ( 'Parameter' )
-            // InternalKwdl.g:409:2: 'Parameter'
+            // InternalKwdl.g:408:1: ( 'parameter' )
+            // InternalKwdl.g:409:2: 'parameter'
             {
              before(grammarAccess.getParameterAccess().getParameterKeyword_1()); 
             match(input,15,FOLLOW_2); 

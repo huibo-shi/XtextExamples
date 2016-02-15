@@ -24,16 +24,13 @@ import org.eclipse.xtext.xbase.lib.Procedures.Procedure1;
 public class TestServlet extends XtextServlet {
   private final List<ExecutorService> executorServices = CollectionLiterals.<ExecutorService>newArrayList();
   
-  @Override
   public void init() {
     try {
       super.init();
       final Provider<ExecutorService> _function = new Provider<ExecutorService>() {
-        @Override
         public ExecutorService get() {
           ExecutorService _newCachedThreadPool = Executors.newCachedThreadPool();
           final Procedure1<ExecutorService> _function = new Procedure1<ExecutorService>() {
-            @Override
             public void apply(final ExecutorService it) {
               TestServlet.this.executorServices.add(it);
             }
@@ -49,10 +46,8 @@ public class TestServlet extends XtextServlet {
     }
   }
   
-  @Override
   public void destroy() {
     final Consumer<ExecutorService> _function = new Consumer<ExecutorService>() {
-      @Override
       public void accept(final ExecutorService it) {
         it.shutdown();
       }

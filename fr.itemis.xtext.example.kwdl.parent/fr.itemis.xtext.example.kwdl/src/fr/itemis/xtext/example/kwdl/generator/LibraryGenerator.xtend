@@ -1,6 +1,5 @@
 package fr.itemis.xtext.example.kwdl.generator
 
-import com.google.inject.Guice
 import com.google.inject.Inject
 import fr.itemis.xtext.example.kwdl.KwdlRuntimeModule
 import fr.itemis.xtext.example.kwdl.KwdlStandaloneSetup
@@ -13,18 +12,22 @@ import org.eclipse.emf.mwe.core.issues.Issues
 import org.eclipse.emf.mwe.core.lib.AbstractWorkflowComponent2
 import org.eclipse.emf.mwe.core.monitor.ProgressMonitor
 import org.eclipse.emf.mwe2.runtime.Mandatory
+import org.eclipse.xtend.lib.annotations.Accessors
+import org.eclipse.xtext.generator.IFileSystemAccess
 import org.eclipse.xtext.generator.JavaIoFileSystemAccess
 
 class LibraryGenerator extends AbstractWorkflowComponent2 {
-	@Inject JavaIoFileSystemAccess fsa
+	protected IFileSystemAccess fsa
+	
+	@Accessors String outpath
 	
 	new(){
-		new KwdlStandaloneSetup().createInjectorAndDoEMFRegistration().getInstance(KwdlRuntimeModule)
+		new KwdlStandaloneSetup().createInjectorAndDoEMFRegistration()
 	}
 
 	@Mandatory
 	def setOutputFolder(String path) {
-		fsa.outputPath = path
+		outpath = path
 	}
 
 	def getPaseredXml() {
@@ -62,7 +65,7 @@ class LibraryGenerator extends AbstractWorkflowComponent2 {
 	'''
 
 	def compileParameterBody(Parameter parameter) '''
-		«IF !parameter.defaultValue.empty»{
+		«IF parameter.defaultValue != null»{
 			DefaultValue : «parameter.defaultValue»
 			«IF !parameter.valuePool.empty»
 				ValuePool : [«parameter.valuePool.join(",")»]
@@ -75,8 +78,10 @@ class LibraryGenerator extends AbstractWorkflowComponent2 {
 	'''
 
 	override protected invokeInternal(WorkflowContext arg0, ProgressMonitor arg1, Issues arg2) {
+		fsa = new JavaIoFileSystemAccess
 		var xmlPaserResult = paseredXml
-		fsa.generateFile("Library.kwdl", xmlPaserResult.compile)
+		var charsequence = xmlPaserResult.compile
+		fsa.generateFile("Library.kwdl", charsequence)
 	}
 
 }

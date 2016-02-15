@@ -31,5 +31,5 @@ class TestSemanticHighlightingCalculator extends DefaultSemanticHighlightingCalc
 		owner.findNodesForFeature(feature).forEach[
 			acceptor.addPosition(offset, length, "Variables")
 		]
-	}
+	} 
 }

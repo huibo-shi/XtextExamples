@@ -21,7 +21,6 @@ public class TestSemanticHighlightingCalculator extends DefaultSemanticHighlight
   @Extension
   private OperationCanceledManager _operationCanceledManager;
   
-  @Override
   protected boolean highlightElement(final EObject it, final IHighlightedPositionAcceptor acceptor, final CancelIndicator cancelIndicator) {
     boolean _matched = false;
     if (!_matched) {
@@ -38,7 +37,6 @@ public class TestSemanticHighlightingCalculator extends DefaultSemanticHighlight
     this._operationCanceledManager.checkCanceled(cancelIndicator);
     List<INode> _findNodesForFeature = NodeModelUtils.findNodesForFeature(owner, feature);
     final Consumer<INode> _function = new Consumer<INode>() {
-      @Override
       public void accept(final INode it) {
         int _offset = it.getOffset();
         int _length = it.getLength();

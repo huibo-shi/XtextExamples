@@ -3,11 +3,11 @@
 ','=20
 ':'=14
 'DefaultValue'=22
-'Parameter'=16
 'ValuePool'=18
 '['=19
 ']'=21
 'optional'=15
+'parameter'=16
 'rule'=11
 '{'=17
 '}'=23

@@ -17,3 +17,4 @@ class TestContentProposalProvider extends IdeContentProposalProvider {
 	}
 	 
 }
+ 
